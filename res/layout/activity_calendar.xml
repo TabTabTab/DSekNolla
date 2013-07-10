@@ -7,15 +7,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".CalendarActivity" >
 
-    <Button
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/pinkbutton"
-        android:minWidth="80dp"
-        android:text="Test"
-        android:textColor="@color/Black" 
-        android:onClick="showCalendar"/>
+        android:text="Calendar" />
+
+    <TextView
+        android:id="@+id/calendarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="Caltext \n ---\n ..." />
 
 </RelativeLayout>
