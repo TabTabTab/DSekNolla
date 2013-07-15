@@ -1,11 +1,14 @@
 package com.nolla.dseknolla;
 
+import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.ComponentList;
+import net.fortuna.ical4j.model.Property;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -19,22 +22,22 @@ public class CalendarActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		syncCalendar();
+		((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
 	}
 	
 	private void syncCalendar(){
-		String urlText="http://www.dsek.se/kalender/ical.php?person=4861&dsek&tlth";
+		String urlText="http://www.calendarwiz.com/CalendarWiz_iCal.php?crd=norfolkgov";
 		CalendarReader cr=new CalendarReader(urlText);
-		{	//exempel för att kolla URL
-			TextView tw=(TextView)findViewById(R.id.calendarText);
-			
+		TextView tw=(TextView)findViewById(R.id.calendarText);
+		ComponentList cList=cr.getComponentList();
+		StringBuilder sb=new StringBuilder();
+		for(Object c:cList){
+			for(Object p:((Component)c).getProperties()){
+				Property prop=(Property)p;
+				sb.append("Name: "+prop.getName()+" Value:  "+prop.getValue()+"\n\n**");
+			}
 		}
-//		ComponentList cList=cr.getComponentList();
-//		tw.setText("");
-//		StringBuilder sb=new StringBuilder();
-//		for(Object c:cList){
-//			sb.append(((Component)c).toString());	
-//		}
-//		tw.setText(sb.toString());
+		tw.setText(sb.toString());
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.nolla.dseknolla;
 
+import java.util.concurrent.ExecutionException;
+
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.ComponentList;
 
@@ -15,9 +17,17 @@ public class CalendarReader  {
 	//not yet tested
 	public CalendarReader(String urlText){
 		RetrieveCalendar retCal=new RetrieveCalendar();
-		retCal.execute(urlText);
+		try {
+			calendar=retCal.execute(urlText).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		calendar=retCal.getCalendar();
+//		calendar=retCal.getCalendar();
 	}
 		
 	public ComponentList getComponentList(){
