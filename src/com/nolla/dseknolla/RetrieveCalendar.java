@@ -11,6 +11,7 @@ import java.util.Scanner;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.util.Calendars;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -30,14 +31,13 @@ public class RetrieveCalendar extends AsyncTask<String,Void,Calendar>{
 			
 			
 //			 Calendar calendar=new Calendar();
-			 File file=new File("/DSekNolla/TextICalURL.txt");
 //			calendar=Calendars.load("C:/Users/Johan/Documents/GitHub/DSekNolla/TextICalURL.txt");
 //			 FileInputStream fin = new FileInputStream("/DSekNolla/TextICalURL.txt");
 //
 //			 CalendarBuilder builder = new CalendarBuilder();
 //
 //			 calendar = builder.build(fin);
-//			 calendar=Calendars.load(url);
+			 calendar=Calendars.load(url);
 //			 Log.w("Calendar.toString():  ", calendar.toString());
 //			TextView calendarText=(TextView)findViewById(R.id.calendarText);
 //			CalendarBuilder calBuilder= new CalendarBuilder();
@@ -51,10 +51,10 @@ public class RetrieveCalendar extends AsyncTask<String,Void,Calendar>{
 			e.printStackTrace();
 			
 		}
-//		catch (ParserException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
+		catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 //		catch (ParserException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
