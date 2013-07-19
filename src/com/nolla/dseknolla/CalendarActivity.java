@@ -1,10 +1,14 @@
 package com.nolla.dseknolla;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -20,14 +24,17 @@ public class CalendarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
 		// Show the Up button in the action bar.
+
 		setupActionBar();
 		syncCalendar();
 		((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
 	}
-	
+
 	private void syncCalendar(){
+	String FilePath = this.getFilesDir().getPath().toString();
+
 		String urlText="http://www.calendarwiz.com/CalendarWiz_iCal.php?crd=norfolkgov";
-		CalendarReader cr=new CalendarReader(urlText);
+		CalendarReader cr=new CalendarReader(urlText,FilePath);
 		TextView tw=(TextView)findViewById(R.id.calendarText);
 		ComponentList cList=cr.getComponentList();
 		StringBuilder sb=new StringBuilder();

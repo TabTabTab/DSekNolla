@@ -15,10 +15,10 @@ import net.fortuna.ical4j.model.ComponentList;
 public class CalendarReader  {
 	private Calendar calendar;
 	//not yet tested
-	public CalendarReader(String urlText){
+	public CalendarReader(String urlText, String filePath){
 		RetrieveCalendar retCal=new RetrieveCalendar();
 		try {
-			calendar=retCal.execute(urlText).get();
+			calendar=retCal.execute(urlText,filePath).get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -26,10 +26,10 @@ public class CalendarReader  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 //		calendar=retCal.getCalendar();
 	}
-		
+
 	public ComponentList getComponentList(){
 		calendar.hashCode();
 		return calendar.getComponents();
