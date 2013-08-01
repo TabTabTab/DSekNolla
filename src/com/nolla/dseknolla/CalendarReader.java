@@ -14,6 +14,7 @@ import net.fortuna.ical4j.model.ComponentList;
  */
 public class CalendarReader  {
 	private Calendar calendar;
+	
 	//not yet tested
 	public CalendarReader(String urlText, String filePath){
 		RetrieveCalendar retCal=new RetrieveCalendar();
@@ -31,7 +32,7 @@ public class CalendarReader  {
 	}
 
 	public ComponentList getComponentList(){
-		calendar.hashCode();
+		
 		return calendar.getComponents();
 	}
 

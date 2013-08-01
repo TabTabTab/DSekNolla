@@ -33,15 +33,26 @@ public class CalendarActivity extends Activity {
 	private void syncCalendar(){
 	String FilePath = this.getFilesDir().getPath().toString();
 
-		String urlText="http://www.calendarwiz.com/CalendarWiz_iCal.php?crd=norfolkgov";
+		String urlText="http://www.dsek.se/kalender/ical.php?person=&dsek&tlth";
 		CalendarReader cr=new CalendarReader(urlText,FilePath);
 		TextView tw=(TextView)findViewById(R.id.calendarText);
 		ComponentList cList=cr.getComponentList();
 		StringBuilder sb=new StringBuilder();
 		for(Object c:cList){
+
+
+			
+			Property a=((Component)c).getProperty("DTSTART");
+			//a.getValue()
+			
+			
 			for(Object p:((Component)c).getProperties()){
 				Property prop=(Property)p;
-				sb.append("Name: "+prop.getName()+" Value:  "+prop.getValue()+"\n\n**");
+				sb.append("ny prop");
+				sb.append("ToString"+prop.toString()+"Name: "+prop.getName()+" Value:  "+prop.getValue()+"\n\n**");
+				if(prop.getName().equals("UID")){
+					sb.append("jag är nog en tid");
+				}
 			}
 		}
 		tw.setText(sb.toString());
