@@ -21,12 +21,14 @@ public class CalendarActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_calendar);
+		setContentView(R.layout.activity_calendar2);
 		// Show the Up button in the action bar.
 
 		setupActionBar();
 		syncCalendar();
-		((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
+		//((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
+		
+	
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -115,6 +117,7 @@ public class CalendarActivity extends Activity {
 			}
 		}
 		tw.setText(sb.toString());
+		tw.scrollTo(0, tw.getTop());
 	}
 
 	/**
