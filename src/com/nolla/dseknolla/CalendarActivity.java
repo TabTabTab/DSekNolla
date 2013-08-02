@@ -1,8 +1,5 @@
 package com.nolla.dseknolla;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Property;
@@ -13,8 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 public class CalendarActivity extends Activity {
@@ -30,28 +29,88 @@ public class CalendarActivity extends Activity {
 		((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void syncCalendar(){
-	String FilePath = this.getFilesDir().getPath().toString();
+		String FilePath = this.getFilesDir().getPath().toString();
 
 		String urlText="http://www.dsek.se/kalender/ical.php?person=&dsek&tlth";
 		CalendarReader cr=new CalendarReader(urlText,FilePath);
 		TextView tw=(TextView)findViewById(R.id.calendarText);
+		Context context = this;
+		Scroller scroller = new Scroller(context);
+		scroller.setFriction(1000);
+		tw.setScroller(scroller);
 		ComponentList cList=cr.getComponentList();
 		StringBuilder sb=new StringBuilder();
 		for(Object c:cList){
+			String time = null;
 
-
-			
-			Property a=((Component)c).getProperty("DTSTART");
-			//a.getValue()
-			
-			
+			boolean show=false;
 			for(Object p:((Component)c).getProperties()){
 				Property prop=(Property)p;
-				sb.append("ny prop");
-				sb.append("ToString"+prop.toString()+"Name: "+prop.getName()+" Value:  "+prop.getValue()+"\n\n**");
-				if(prop.getName().equals("UID")){
-					sb.append("jag är nog en tid");
+
+				if(prop.getName().equals("DTSTART")){
+
+					time = prop.getValue();
+					if(time.contains("T")){
+						time=time.substring(0, time.indexOf("T"));
+						
+					}
+				}
+			}	
+
+
+			if(time!=null){
+				if(Integer.parseInt(time)<20131007&&Integer.parseInt(time)>20130825){
+					show=true;
+				}
+			}
+			if(show){
+				String end=null;
+				String start=null;
+				String location=null;
+				String summary=null;
+				String description=null;
+				boolean nollning=false;
+				
+				
+				for(Object p:((Component)c).getProperties()){
+					Property prop=(Property)p;
+					
+
+					if(prop.getName().equals("DTSTART")){
+						String startTime =prop.getValue();
+						start=getFormatedTimeAsString(startTime);
+
+					}
+					if(prop.getName().equals("DTEND")){
+						String endTime =prop.getValue();
+						end=getFormatedTimeAsString(endTime);
+					}
+					if(prop.getName().equals("SUMMARY")){
+						summary=prop.getValue();
+						if(summary.equals("Nollning")){
+							nollning=true;
+						}
+					}
+					if(prop.getName().equals("DESCRIPTION")){
+						description=prop.getValue();
+					}
+					if(prop.getName().equals("LOCATION")){
+						location=prop.getValue();
+
+					}
+				}
+				if(nollning==false){
+				sb.append(summary+"\n");
+				sb.append("Från: "+start+" Till: "+end+"\n");
+				if(!description.equals("")){
+				sb.append(description+"\n");
+				}
+				if(location!=null){
+				sb.append("Plats: "+location+"\n");
+				}
+				sb.append("\n");
 				}
 			}
 		}
@@ -73,6 +132,35 @@ public class CalendarActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.calendar, menu);
 		return true;
+	}
+	public String getFormatedTimeAsString(String startTime){
+		StringBuilder sb = new StringBuilder();
+		String hourMinute=null;
+		if(startTime.contains("T")){
+			startTime=startTime.replace("T", " ");
+			hourMinute=startTime.substring(startTime.indexOf(" ")+1, startTime.indexOf(" ")+5);
+
+		}
+		startTime=startTime.substring(4);
+		String Month =startTime.substring(0, 2);
+		String date = startTime.substring(2,4);
+
+		sb.append(date+" ");
+		if(Month.equals("08")){
+			sb.append("Augusti ");
+		}
+		else if(Month.equals("09")){
+			sb.append("September ");
+		}
+		else{
+			sb.append("Oktober ");
+		}
+		if(hourMinute!=null){
+			String hour=hourMinute.substring(0, 2);
+			String minute =hourMinute.substring(2);
+			sb.append(" "+hour+":"+minute+" ");
+		}
+		return sb.toString();
 	}
 
 	@Override

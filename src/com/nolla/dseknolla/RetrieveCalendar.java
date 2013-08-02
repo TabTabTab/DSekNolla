@@ -30,24 +30,24 @@ public class RetrieveCalendar extends AsyncTask<String,Void,Calendar>{
 			URL url=new URL(urlText[0]);
 			//URL url = new URL("http://www.dsek.se/kalender/ical.php?person=&dsek&tlth");
 			String filePath=urlText[1];
-			
+
 
 
 
 			BufferedReader reader =new BufferedReader(new InputStreamReader(url.openStream(), "ISO-8859-15"));
-			
+
 
 			StringBuilder calendarString = new StringBuilder();
 			String lastLine="";
 			String currentLine="";
 			String line = null;
-			
+
 			String line1="";
 			while((line=reader.readLine())!=null){
-		
-//				lastLine=currentLine;
+
+				//				lastLine=currentLine;
 				currentLine=line;
-				
+
 				if(currentLine.contains("DESCRIPTION:")){
 					line1= currentLine.substring(currentLine.indexOf(":")+1);
 					Log.w("efter : " ,line1);
@@ -56,50 +56,56 @@ public class RetrieveCalendar extends AsyncTask<String,Void,Calendar>{
 				}
 
 				else{
-					
-			if(!line1.equals("")){
-				
-				
-				
-				calendarString.append(line1.trim()+"\n");
-				Log.w("test",currentLine);
-//				calendarString.append("DTEND;TZID=Europe/Stockholm:20130101T030002"+"\n");
-				if(currentLine.contains("DTEND;TZID=Europe/Stockholm:")){
-				calendarString.append(currentLine+"\n");
+
+					if(!line1.equals("")){
+
+
+
+						calendarString.append(line1.trim()+"\n");
+
+
+
+						if(currentLine.contains("DTEND;TZID=Europe/Stockholm;VALUE=DATE:20130832")){
+							currentLine="DTEND;TZID=Europe/Stockholm;VALUE=DATE:20130831";
+							calendarString.append(currentLine+"\n");
+
+						}
+						else{
+							calendarString.append(currentLine+"\n");
+						}
+
+						line1="";
+					}
+					else{
+
+						if(currentLine.contains("DTEND;")){
+							if(currentLine.contains("DTEND;TZID=Europe/Stockholm;VALUE=DATE:20130832")){
+								currentLine="DTEND;TZID=Europe/Stockholm;VALUE=DATE:20130831";
+							}
+							calendarString.append("\n");
+							calendarString.append(currentLine.trim()+"\n");
+						}
+						else{
+							calendarString.append(currentLine.trim()+"\n");
+						}
+					}
 				}
-				line1="";
-				}
-			else{
-				if(currentLine.contains("DTEND;TZID=Europe/Stockholm:")){
-					calendarString.append("\n");
-				}
-				calendarString.append(currentLine.trim()+"\n");
+
 			}
-				}
-//				if(currentLine.equals("DESCRIPTION:")){
-//					
-//				}
-//				else{
-//					if(lastLine.equals("DESCRIPTION:")){
-//						calendarString.append("DESCRIPTION:"+currentLine.trim()+"\n");
-//						Log.w("log","DESCRIPTION:"+currentLine.trim()+"\n");
-//					}
-//					calendarString.append(currentLine.trim()+"\n");
-//					}
 
 
-			}
 
 
-			
-			
 
 
+
+
+			//	Log.w("ALLT",calendarString.toString());
 
 			FileWriter fw= new FileWriter(filePath+"/kalender.txt");
 			fw.write(calendarString.toString());
 			fw.close();
-		
+
 
 			calendar=Calendars.load(filePath+"/kalender.txt");
 			return calendar;
@@ -124,11 +130,11 @@ public class RetrieveCalendar extends AsyncTask<String,Void,Calendar>{
 		return null;
 	}
 	protected void onPostExecute(Calendar calendar) {
-        // TODO: check this.exception
-        // TODO: do something with the feed
-    }
+		// TODO: check this.exception
+		// TODO: do something with the feed
+	}
 	public Calendar getCalendar(){
-//		Log.w("AFTER!!!:::Calendar.toString() :  ", calendar.toString());
+		//		Log.w("AFTER!!!:::Calendar.toString() :  ", calendar.toString());
 		return calendar;
 	}
 }
