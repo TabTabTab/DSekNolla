@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nolla.dseknolla"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="3"
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +27,44 @@
         </activity>
         <activity
             android:name="com.nolla.dseknolla.CalendarActivity"
-            android:label="@string/title_activity_calendar" >
+            android:label="@string/title_activity_calendar"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.NewsActivity"
+            android:label="@string/title_activity_news"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.Ordlista"
+            android:label="@string/title_activity_ordlista"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.LoadingActivity"
+            android:label="@string/title_activity_loading" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.CampusMap"
+            android:label="@string/title_activity_map" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.MapChooser"
+            android:label="@string/title_activity_map_chooser"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nolla.dseknolla.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.InfoAndLinks"
+            android:label="@string/title_activity_info_and_links"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" > >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.InfoPane"
+            android:label="@string/title_activity_info_pane" 
+            android:parentActivityName="com.nolla.dseknolla.InfoAndLinks" >>
         </activity>
     </application>
 

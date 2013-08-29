@@ -9,10 +9,19 @@ package com.nolla.dseknolla;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarButtonStyle=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarStyle=0x7f010000;
     }
     public static final class color {
         public static final int Black=0x7f040001;
         public static final int Pink=0x7f040000;
+        public static final int black_overlay=0x7f040002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -26,46 +35,80 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int pink_button=0x7f020001;
-        public static final int pink_button_pressed=0x7f020002;
-        public static final int pink_button_selected=0x7f020003;
-        public static final int pinkbutton=0x7f020004;
     }
     public static final class id {
-        public static final int SCROLLER_ID=0x7f090001;
-        public static final int action_settings=0x7f090004;
-        public static final int button1=0x7f090002;
-        public static final int calendarText=0x7f090000;
+        public static final int SCROLLER_ID=0x7f090000;
+        public static final int SCROLLER_ID2=0x7f09000f;
+        public static final int SCROLLER_ID3=0x7f090011;
+        public static final int SCROLLER_IDINFO=0x7f090007;
+        public static final int TextView01=0x7f090005;
+        public static final int action_settings=0x7f090014;
+        public static final int button1=0x7f09000a;
+        public static final int button2=0x7f09000b;
+        public static final int button3=0x7f09000c;
+        public static final int button4=0x7f09000d;
+        public static final int button5=0x7f09000e;
+        public static final int calendarText=0x7f090001;
+        public static final int linearLayout1=0x7f090009;
+        public static final int link1=0x7f090002;
+        public static final int link2=0x7f090004;
+        public static final int link3=0x7f090006;
+        public static final int newsText=0x7f090010;
+        public static final int ordlistText=0x7f090012;
         public static final int textView1=0x7f090003;
+        public static final int textview=0x7f090008;
+        public static final int webView1=0x7f090013;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;
-        public static final int activity_calendar2=0x7f030001;
-        public static final int activity_main=0x7f030002;
+        public static final int activity_info_and_links=0x7f030001;
+        public static final int activity_info_pane=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_map_chooser=0x7f030004;
+        public static final int activity_news=0x7f030005;
+        public static final int activity_ordlista=0x7f030006;
+        public static final int campus=0x7f030007;
     }
     public static final class menu {
         public static final int calendar=0x7f080000;
-        public static final int main=0x7f080001;
+        public static final int info_and_links=0x7f080001;
+        public static final int info_pane=0x7f080002;
+        public static final int loading=0x7f080003;
+        public static final int main=0x7f080004;
+        public static final int map=0x7f080005;
+        public static final int map_chooser=0x7f080006;
+        public static final int news=0x7f080007;
+        public static final int ordlista=0x7f080008;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
-        public static final int title_activity_calendar=0x7f060003;
+        public static final int title_activity_calendar=0x7f060002;
+        public static final int title_activity_info_and_links=0x7f060009;
+        public static final int title_activity_info_pane=0x7f06000a;
+        public static final int title_activity_loading=0x7f060005;
+        public static final int title_activity_map=0x7f060007;
+        public static final int title_activity_map_chooser=0x7f060008;
+        public static final int title_activity_news=0x7f060003;
+        public static final int title_activity_ordlista=0x7f060004;
+        public static final int title_activity_show_map=0x7f060006;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
+
     
  API 11 theme customizations can go here. 
 
@@ -80,5 +123,51 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int ButtonBar=0x7f070003;
+        public static final int ButtonBarButton=0x7f070004;
+        public static final int FullscreenActionBarStyle=0x7f070005;
+        public static final int FullscreenTheme=0x7f070002;
     }
+    public static final class styleable {
+        /** 
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle com.nolla.dseknolla:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle com.nolla.dseknolla:buttonBarStyle}</code></td><td></td></tr>
+           </table>
+           @see #ButtonBarContainerTheme_buttonBarButtonStyle
+           @see #ButtonBarContainerTheme_buttonBarStyle
+         */
+        public static final int[] ButtonBarContainerTheme = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.nolla.dseknolla.R.attr#buttonBarButtonStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.nolla.dseknolla:buttonBarButtonStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.nolla.dseknolla.R.attr#buttonBarStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.nolla.dseknolla:buttonBarStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+    };
 }
