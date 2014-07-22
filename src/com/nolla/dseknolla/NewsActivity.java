@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.text.Html;
 import android.text.format.Time;
@@ -17,14 +18,29 @@ import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.DrawerLayout;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 
 public class NewsActivity extends Activity implements AsyncTaskCompleteListener<String>{
+	
+	private DrawerLayout mDrawerLayout;
+	 
+	// ListView represents Navigation Drawer
+	private ListView mDrawerList;
+	private ActionBarDrawerToggle mDrawerToggle;
+	
+	
 	@Override
 	public boolean onKeyDown(int i, KeyEvent event) {
 		
@@ -36,15 +52,151 @@ public class NewsActivity extends Activity implements AsyncTaskCompleteListener<
 		}
 		
 	}
+	
+	protected void onResume(Bundle savedInstanceState) {
+		mDrawerLayout.closeDrawers();
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_news);
+		setContentView(R.layout.activity_news2);
 		// Show the Up button in the action bar.
-		setupActionBar();
+		//setupActionBar();
+		
+		
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerLayout.closeDrawers(); 
+		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		
+		// Getting reference to the ActionBarDrawerToggle
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
+
+			/** Called when drawer is closed */
+			public void onDrawerClosed(View view) {
+				getActionBar().setTitle("Nyheter");
+				invalidateOptionsMenu();
+
+			}
+
+			/** Called when a drawer is opened */
+			public void onDrawerOpened(View drawerView) {
+				getActionBar().setTitle("Nyheter");
+				
+				
+				
+				invalidateOptionsMenu();
+			}
+
+		};
+		
+	
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+//				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+		colorArrayAdapter adapter = new colorArrayAdapter(getBaseContext(), 
+				getResources().getStringArray(R.array.menus),1);
+		
+		// Setting the adapter on mDrawerList
+		mDrawerList.setAdapter(adapter);
+
+		// Enabling Home button
+		getActionBar().setHomeButtonEnabled(true);
+
+		// Enabling Up navigation
+		getActionBar().setDisplayHomeAsUpEnabled(true); 
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+			if(position==0){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(NewsActivity.this,CalendarActivity.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+					
+				}
+				else if(position==1){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(NewsActivity.this,NewsActivity.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==2){
+				
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(NewsActivity.this,MapChooser.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==3){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(NewsActivity.this,Ordlista.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==4){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(NewsActivity.this,InfoAndLinks.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+
+			
+
+			}
+		});   
+	     
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		String FilePath = this.getFilesDir().getPath().toString();
 		TextView tw=(TextView)findViewById(R.id.newsText);
 		Time old = new Time();
@@ -161,7 +313,21 @@ public class NewsActivity extends Activity implements AsyncTaskCompleteListener<
 		
 	}
 	
-	
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		mDrawerToggle.syncState();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		return true;
+		//return super.onOptionsItemSelected(item);
+		
+	}
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager  = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -284,22 +450,22 @@ public class NewsActivity extends Activity implements AsyncTaskCompleteListener<
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case android.R.id.home:
+//			// This ID represents the Home or Up button. In the case of this
+//			// activity, the Up button is shown. Use NavUtils to allow users
+//			// to navigate up one level in the application structure. For
+//			// more details, see the Navigation pattern on Android Design:
+//			//
+//			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+//			//
+//			NavUtils.navigateUpFromSameTask(this);
+//			return true;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 
 
 	@Override

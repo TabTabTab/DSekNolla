@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ScrollView;
+import android.widget.Scroller;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
@@ -13,7 +16,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		ScrollView scroll=(ScrollView)findViewById(R.id.SCROLLER_ID222);
+		scroll.scrollTo(0, scroll.getTop());
 		
 		
 	}
@@ -33,7 +37,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 	
 		return true;
 	}
@@ -69,6 +73,14 @@ public class MainActivity extends Activity {
 		Intent intent=new Intent(this,InfoAndLinks.class);
 		
 	
+		
+		startActivity(intent);
+	}
+	
+	public void showHugo(View view){
+		Intent intent=new Intent(this,Hugo.class);
+		
+		
 		
 		startActivity(intent);
 	}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nolla.dseknolla"
-    android:versionCode="3"
+    android:versionCode="4"
     android:versionName="1.2" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -59,12 +59,23 @@
         <activity
             android:name="com.nolla.dseknolla.InfoAndLinks"
             android:label="@string/title_activity_info_and_links"
-            android:parentActivityName="com.nolla.dseknolla.MainActivity" > >
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+ >
         </activity>
         <activity
             android:name="com.nolla.dseknolla.InfoPane"
-            android:label="@string/title_activity_info_pane" 
-            android:parentActivityName="com.nolla.dseknolla.InfoAndLinks" >>
+            android:label="@string/title_activity_info_pane"
+            android:parentActivityName="com.nolla.dseknolla.InfoAndLinks" >
+>
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.Hugo"
+            android:label="@string/title_activity_hugo"
+            android:parentActivityName="com.nolla.dseknolla.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.nolla.dseknolla.MapChooser2"
+            android:label="@string/title_activity_map_chooser2" >
         </activity>
     </application>
 

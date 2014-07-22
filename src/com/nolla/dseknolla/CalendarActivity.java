@@ -16,22 +16,38 @@ import net.fortuna.ical4j.model.Property;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.os.Handler;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalendarActivity extends Activity {
 	CalendarReader cr;
+	// Within which the entire activity is enclosed
+	private DrawerLayout mDrawerLayout;
+	 
+	// ListView represents Navigation Drawer
+	private ListView mDrawerList;
+	private ActionBarDrawerToggle mDrawerToggle;
+
+	 
 	@Override
 	public boolean onKeyDown(int i, KeyEvent event) {
 		
@@ -50,14 +66,135 @@ public class CalendarActivity extends Activity {
 	    return activeNetworkInfo != null;
 	}
 	
+	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_calendar);
+		getActionBar().setDisplayHomeAsUpEnabled(false);
+		setContentView(R.layout.activity_calendar2);
 		// Show the Up button in the action bar.
 	
-		setupActionBar();
+	//	setupActionBar();
+		
+
+		// Getting reference to the DrawerLayout
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		
+		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		
+		// Getting reference to the ActionBarDrawerToggle
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+				R.drawable.ic_drawer, R.string.drawer_open,
+				R.string.drawer_close) {
+
+			/** Called when drawer is closed */
+			public void onDrawerClosed(View view) {
+				getActionBar().setTitle("Kalender");
+				invalidateOptionsMenu();
+
+			}
+
+			/** Called when a drawer is opened */
+			public void onDrawerOpened(View drawerView) {
+				getActionBar().setTitle("Kalender");
+				
+				
+				
+				invalidateOptionsMenu();
+			}
+
+		};
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+//				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+		colorArrayAdapter adapter = new colorArrayAdapter(getBaseContext(), 
+				getResources().getStringArray(R.array.menus),0);
+		
+		// Setting the adapter on mDrawerList
+		mDrawerList.setAdapter(adapter);
+
+		// Enabling Home button
+		getActionBar().setHomeButtonEnabled(true);
+
+		// Enabling Up navigation
+		getActionBar().setDisplayHomeAsUpEnabled(true); 
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if(position==0){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(CalendarActivity.this,CalendarActivity.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+					
+				}
+				else if(position==1){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(CalendarActivity.this,NewsActivity.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==2){
+				
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(CalendarActivity.this,MapChooser.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==3){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(CalendarActivity.this,Ordlista.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+				else if(position==4){
+					
+					mDrawerLayout.closeDrawers();
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+					    @Override
+					    public void run() {
+					    	Intent intent=new Intent(CalendarActivity.this,InfoAndLinks.class);
+					    	startActivity(intent); 
+					    }
+					}, 250);
+				}
+
+			
+
+			}
+		});   
+	     
+	     
+	     
 		
 		try {
 			syncCalendar();
@@ -69,6 +206,37 @@ public class CalendarActivity extends Activity {
 		//((TextView)findViewById(R.id.calendarText)).setMovementMethod(new ScrollingMovementMethod());
 		
 	
+	}
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		mDrawerToggle.syncState();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		return true;
+		//return super.onOptionsItemSelected(item);
+		
+	}
+
+	/** Called whenever we call invalidateOptionsMenu() */
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		// If the drawer is open, hide action items related to the content view
+		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+
+		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 
 	//@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -245,7 +413,7 @@ public class CalendarActivity extends Activity {
 
 
 			if(time!=null){
-				if(Integer.parseInt(time)<20131007&&Integer.parseInt(time)>20130825){
+				if(Integer.parseInt(time)<20141007&&Integer.parseInt(time)>=20140825){
 					show=true;
 				}
 			}
@@ -349,24 +517,24 @@ public class CalendarActivity extends Activity {
 		}
 	}
 	
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-			
-			
-		}
-	}
+//	/**
+//	 * Set up the {@link android.app.ActionBar}, if the API is available.
+//	 */
+//	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+//	private void setupActionBar() {
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//			getActionBar().setDisplayHomeAsUpEnabled(true);
+//			
+//			
+//		}
+//	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.calendar, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.calendar, menu);
+//		return true;
+//	}
 	public String getFormatedTimeAsString(String startTime){
 		StringBuilder sb = new StringBuilder();
 		String hourMinute=null;
@@ -400,21 +568,21 @@ public class CalendarActivity extends Activity {
 		return sb.toString();
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case android.R.id.home:
+//			// This ID represents the Home or Up button. In the case of this
+//			// activity, the Up button is shown. Use NavUtils to allow users
+//			// to navigate up one level in the application structure. For
+//			// more details, see the Navigation pattern on Android Design:
+//			//
+//			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+//			//
+//			NavUtils.navigateUpFromSameTask(this);
+//			return true;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 
 }

@@ -11,7 +11,20 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_map_chooser">Kartor</string>
     <string name="title_activity_info_and_links">Information</string>
-   
     <string name="title_activity_info_pane">Information</string>
+    <string name="title_activity_hugo">Hugo</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+    <string-array name="menus">
+        <item>Kalender</item>
+        <item>Nyheter</item>
+        <item>Kartor</item>
+        <item>Ordlista</item>
+        <item>Information</item>
+    </string-array>
+
+    <string name="title_activity_map_chooser2">Kartor</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

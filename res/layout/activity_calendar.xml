@@ -23,6 +23,6 @@
         android:layout_weight="1.0"
   />
 
-    </ScrollView>
+</ScrollView>
 
 </LinearLayout>
