@@ -4,6 +4,7 @@
     <color name="Pink">#F280A1</color>
     <color name="Purple">#BA55D3 </color>
     <color name="Black">#000000</color>
+    <color name="Grey">#282828</color>
     <color name="black_overlay">#66000000</color>
 
 </resources>

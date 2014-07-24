@@ -23,9 +23,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int Black=0x7f040002;
+        public static final int Grey=0x7f040003;
         public static final int Pink=0x7f040000;
         public static final int Purple=0x7f040001;
-        public static final int black_overlay=0x7f040003;
+        public static final int black_overlay=0x7f040004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -38,18 +39,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_drawer=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int dsek=0x7f020000;
+        public static final int ic_drawer=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
         public static final int Information_scroller=0x7f0a0008;
         public static final int SCROLLER_ID=0x7f0a0000;
         public static final int SCROLLER_ID2=0x7f0a0019;
         public static final int SCROLLER_ID222=0x7f0a0013;
-        public static final int SCROLLER_ID3=0x7f0a001b;
+        public static final int SCROLLER_ID3=0x7f0a001c;
         public static final int SCROLLER_IDINFO=0x7f0a0011;
         public static final int TextView01=0x7f0a000c;
-        public static final int action_settings=0x7f0a001e;
+        public static final int action_settings=0x7f0a001f;
         public static final int button1=0x7f0a0007;
         public static final int button2=0x7f0a0015;
         public static final int button3=0x7f0a0016;
@@ -60,6 +62,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int drawer_layout=0x7f0a0002;
         public static final int editText1=0x7f0a0006;
         public static final int hugoInfoText=0x7f0a0005;
+        public static final int imageView1=0x7f0a001b;
         public static final int left_drawer=0x7f0a0004;
         public static final int linearLayout1=0x7f0a0014;
         public static final int link1=0x7f0a0009;
@@ -69,10 +72,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int link5=0x7f0a000f;
         public static final int link6=0x7f0a0010;
         public static final int newsText=0x7f0a001a;
-        public static final int ordlistText=0x7f0a001c;
+        public static final int ordlistText=0x7f0a001d;
         public static final int textView1=0x7f0a000a;
         public static final int textview=0x7f0a0012;
-        public static final int webView1=0x7f0a001d;
+        public static final int webView1=0x7f0a001e;
     }
     public static final class layout {
         public static final int activity_calendar=0x7f030000;
@@ -86,10 +89,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_map_chooser2=0x7f030008;
         public static final int activity_news=0x7f030009;
         public static final int activity_news2=0x7f03000a;
-        public static final int activity_ordlista=0x7f03000b;
-        public static final int activity_ordlista2=0x7f03000c;
-        public static final int campus=0x7f03000d;
-        public static final int drawer_list_item=0x7f03000e;
+        public static final int activity_nollning=0x7f03000b;
+        public static final int activity_ordlista=0x7f03000c;
+        public static final int activity_ordlista2=0x7f03000d;
+        public static final int campus=0x7f03000e;
+        public static final int drawer_list_item=0x7f03000f;
     }
     public static final class menu {
         public static final int calendar=0x7f090000;
@@ -102,7 +106,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int map_chooser=0x7f090007;
         public static final int map_chooser2=0x7f090008;
         public static final int news=0x7f090009;
-        public static final int ordlista=0x7f09000a;
+        public static final int nollning=0x7f09000a;
+        public static final int ordlista=0x7f09000b;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -119,6 +124,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_activity_map_chooser=0x7f060008;
         public static final int title_activity_map_chooser2=0x7f06000e;
         public static final int title_activity_news=0x7f060003;
+        public static final int title_activity_nollning=0x7f060010;
         public static final int title_activity_ordlista=0x7f060004;
         public static final int title_activity_show_map=0x7f060006;
     }

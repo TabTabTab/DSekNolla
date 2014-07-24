@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
@@ -21,6 +22,7 @@ public class InfoAndLinks extends Activity {
 	// ListView represents Navigation Drawer
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
+	private View clickedView;
 	String title=null;
 	String info="<h1>VAD ÄR NOLLNING?</h1> Nollningen är ett namn på de fem första veckorna på LTH. Den första av dessa veckor utspelar sig innan ordinarie undervisning börjar och det är här som nollningsaktiviteterna ligger som tätast. På dagarna ges nyttiga introduktionskurser i matematik och datorkunskap och på kvällarna finns det roliga fritidsaktiviteter och fester att delta i.<br /><br /> De första veckorna när man kommer till universitetet kanske man känner sig ensam, det är väldigt många studenter som börjar utan att känna en enda person i hela staden. Det är många som oroar sig över om de kommer träffa några kompisar. Det är precis detta som nollningen är till för, målet med nollningen är att studenterna ska lära känna varandra och att alla ska hitta studiekamrater. <h1>VAD ÄR EN NOLLA?</h1> En nolla är (oftast) en förstaårsstudent. Denna student tas hand om av phaddrarna som alltid ser till att nollan har det trevligt! När man är nolla får man möjligheten att bli barn på nytt och leka lekar igen, samtidigt som allvaret hopar sig i vardagen. Nolla är man fram till nollegasquen då man upphöjs till etta efter fullbordat nolleuppdrag. <h1>VAD ÄR EN PHADDER?</h1> En phadder är en äldre student som ofta springer runt i en ouveralle, och en del springer runt utan ouveralle. Phaddern vet en fruktansvärd massa saker om LTH och då speciellt hur D-sektionen och studentlivet fungerar. En phadder kan också allt som står på nollningsprogrammet, var föreläsningssalar ligger, hur man beställer pizza och vart man tar vägen om man missade sista tåget hem. De flesta phaddrarna har även gått på utbildning i ledarskap, alkoholansvar och mycket, mycket mer, så tveka inte att fråga dem något om en kris uppstår. Phaddern är till för Nollans skull.";
 	String nolleuppdrag="<h2>Uppdrag</h2>"+
@@ -230,62 +232,72 @@ String vettochettikett= "<h1>Vett och Ettiquette</h1>"+
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				if(position==0){
-
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(InfoAndLinks.this,CalendarActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 
 				}
 				else if(position==1){
-
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(InfoAndLinks.this,NewsActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==2){
-
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(InfoAndLinks.this,MapChooser.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==3){
-
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(InfoAndLinks.this,Ordlista.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==4){
-
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(InfoAndLinks.this,InfoAndLinks.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
@@ -22,7 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class Ordlista extends Activity {
 
 	private DrawerLayout mDrawerLayout;
-
+	private View clickedView;
 	// ListView represents Navigation Drawer
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -91,12 +92,15 @@ public class Ordlista extends Activity {
 					int position, long id) {
 				if(position==0){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(Ordlista.this,CalendarActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
@@ -104,48 +108,60 @@ public class Ordlista extends Activity {
 				}
 				else if(position==1){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(Ordlista.this,NewsActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==2){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(Ordlista.this,MapChooser.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==3){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(Ordlista.this,Ordlista.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==4){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(Ordlista.this,InfoAndLinks.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
@@ -16,7 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class MapChooser extends Activity {
 	private DrawerLayout mDrawerLayout;
-
+	private View clickedView;
 	// ListView represents Navigation Drawer
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -86,12 +87,15 @@ public class MapChooser extends Activity {
 					int position, long id) {
 				if(position==0){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(MapChooser.this,CalendarActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
@@ -99,48 +103,60 @@ public class MapChooser extends Activity {
 				}
 				else if(position==1){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(MapChooser.this,NewsActivity.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==2){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(MapChooser.this,MapChooser.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==3){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(MapChooser.this,Ordlista.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
 				}
 				else if(position==4){
 
+					view.setBackgroundColor(Color.parseColor("#33B5E5"));
+					clickedView=view;
 					mDrawerLayout.closeDrawers();
 					final Handler handler = new Handler();
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
 							Intent intent=new Intent(MapChooser.this,InfoAndLinks.class);
+							clickedView.setBackgroundColor(Color.parseColor("#F280A1"));
 							startActivity(intent); 
 						}
 					}, 250);
