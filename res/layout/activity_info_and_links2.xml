@@ -41,10 +41,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:onClick="showInfo"
+            android:onClick="showInfo"            
             android:text="Vad är Nollning?"
             android:textSize="30sp" />
 
+        
+        
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"

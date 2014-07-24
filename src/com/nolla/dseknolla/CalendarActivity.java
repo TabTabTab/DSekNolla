@@ -479,14 +479,18 @@ public class CalendarActivity extends Activity {
 
 
 						sb.append("<h3>"+summary+"</h3>");
-						sb.append("Från: "+start+" Till: "+end+"<br />");
+						sb.append("<b>Från: <i>"+start+"</i> Till: <i>"+end+"</i></b><br>");
+						if(location!=null){
+							sb.append("<b>Plats: <i>"+location+"</i></b><br />");
+						}
+						sb.append("<br>");
 						if(!description.equals("")){
 
 							sb.append(description+"<br />");
 						}
-						if(location!=null){
-							sb.append("Plats: "+location+"<br />");
-						}
+//						if(location!=null){
+//							sb.append("<b>Plats: <i>"+location+"</i></b><br />");
+//						}
 						sb.append("<br />");
 					}
 				}
